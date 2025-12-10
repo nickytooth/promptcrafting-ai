@@ -9,6 +9,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import OpenAI from 'openai';
 
+// Load environment variables
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
