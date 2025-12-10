@@ -18,6 +18,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Debug: Log if env vars are loaded
+console.log('Environment check:');
+console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Set ✓' : 'Missing ✗');
+console.log('GOOGLE_AI_API_KEY:', process.env.GOOGLE_AI_API_KEY ? 'Set ✓' : 'Missing ✗');
+console.log('ANTHROPIC_API_KEY:', process.env.ANTHROPIC_API_KEY ? 'Set ✓' : 'Missing ✗');
+
 // Middleware
 app.use(cors());
 app.use(express.json());
