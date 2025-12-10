@@ -20,6 +20,8 @@ const PORT = process.env.PORT || 3001;
 
 // Debug: Log if env vars are loaded
 console.log('Environment check:');
+console.log('Port:', process.env.PORT);
+console.log('Available Env Vars:', Object.keys(process.env).sort().join(', '));
 console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Set ✓' : 'Missing ✗');
 console.log('GOOGLE_AI_API_KEY:', process.env.GOOGLE_AI_API_KEY ? 'Set ✓' : 'Missing ✗');
 console.log('ANTHROPIC_API_KEY:', process.env.ANTHROPIC_API_KEY ? 'Set ✓' : 'Missing ✗');
