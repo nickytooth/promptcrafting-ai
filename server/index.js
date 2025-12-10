@@ -22,9 +22,16 @@ const PORT = process.env.PORT || 3001;
 console.log('Environment check:');
 console.log('Port:', process.env.PORT);
 console.log('Available Env Vars:', Object.keys(process.env).sort().join(', '));
-console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'Set ✓' : 'Missing ✗');
-console.log('GOOGLE_AI_API_KEY:', process.env.GOOGLE_AI_API_KEY ? 'Set ✓' : 'Missing ✗');
-console.log('ANTHROPIC_API_KEY:', process.env.ANTHROPIC_API_KEY ? 'Set ✓' : 'Missing ✗');
+
+const checkKey = (name, key) => {
+  if (!key) return 'Missing ✗';
+  if (key === 'undefined') return 'Undefined String ✗';
+  return `Set ✓ (Length: ${key.length})`;
+};
+
+console.log('OPENAI_API_KEY:', checkKey('OPENAI_API_KEY', process.env.OPENAI_API_KEY));
+console.log('GOOGLE_AI_API_KEY:', checkKey('GOOGLE_AI_API_KEY', process.env.GOOGLE_AI_API_KEY));
+console.log('ANTHROPIC_API_KEY:', checkKey('ANTHROPIC_API_KEY', process.env.ANTHROPIC_API_KEY));
 
 // Middleware
 app.use(cors());
