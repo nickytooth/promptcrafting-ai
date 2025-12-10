@@ -56,16 +56,31 @@ const upload = multer({
   }
 });
 
-// Initialize AI clients
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+// Initialize AI clients safely
+let anthropic;
+try {
+  anthropic = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY || 'dummy_key',
+  });
+} catch (e) {
+  console.warn('Anthropic client failed to initialize:', e.message);
+}
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY);
+let genAI;
+try {
+  genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY || 'dummy_key');
+} catch (e) {
+  console.warn('Google AI client failed to initialize:', e.message);
+}
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+let openai;
+try {
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY || 'dummy_key',
+  });
+} catch (e) {
+  console.warn('OpenAI client failed to initialize:', e.message);
+}
 
 // Platform-specific prompt templates
 const platformTemplates = {
